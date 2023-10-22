@@ -1,0 +1,24 @@
+{
+  "name": "ohnepixel-servers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start-client": "cd client && npm start",
+    "start-server": "node --experimental-specifier-resolution=node server.mjs",
+    "start-both": "concurrently --kill-others \"node --experimental-specifier-resolution=node server.mjs\" \"cd client && npm start\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.5.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "memory-cache": "^0.2.0",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

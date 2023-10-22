@@ -1,0 +1,60 @@
+body{
+  background-color: #000000;
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  color: #ffffff;
+}
+
+.map-buttons {
+  display: flex;
+  gap: 10px;
+  color: #ffffff;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: #ffffff;
+}
+
+button img {
+  width: 250px;
+  height: 175px; /* Set a fixed size for all images */
+  margin: 5px; /* Add spacing between images */
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  color: #ffffff;
+}
+
+li {
+  margin-bottom: 8px;
+  color: #ffffff;
+}
+
+button,
+button img {
+  transition: transform 0.2s;
+}
+
+button:hover,
+button:focus,
+button img:hover,
+button img:focus {
+  transform: scale(1.1);
+}
+
+
