@@ -62,7 +62,7 @@ const App = () => {
 
   return (
     <div className="container">
-      <h1>OhnePixel Server List</h1>
+      <h1>OhnePixel Server List [Beta]</h1>
       <p>Fetches the server with the least amount of players.</p>
       <div className="map-buttons">
         {maps.map(map => (

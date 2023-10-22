@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import fetch from 'node-fetch';
 import dotenv from 'dotenv';
 import cache from 'memory-cache'; // Add this line
@@ -7,6 +8,10 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 6000;
 const STEAM_API_KEY = process.env.STEAM_API_KEY;
+
+app.use(cors({
+  origin: process.env.FRONTEND_URL,
+}));
 
 app.get('/api/server-info', async (req, res) => {
   const ip = req.query.ip;
