@@ -25,12 +25,12 @@ const App = () => {
       let leastPlayersServer = '';
 
       const fetchPromises = selectedMap.ips.map(ip => {
-        console.log('Fetching server info for IP:', ip);
+        //console.log('Fetching server info for IP:', ip);
         return fetch(`${apiUrl}/api/server-info?ip=${ip}`)
           .then(response => response.json())
           .then(data => {
             //console.log('Received server info for IP:', ip, 'Data:', data);
-            console.log('calling: ', `${apiUrl}/api/server-info?ip=${ip}`)
+            //console.log('calling: ', `${apiUrl}/api/server-info?ip=${ip}`)
             if (data.response && data.response.servers) {
               const server = data.response.servers[0];
               if (server.players < server.max_players && server.players < leastPlayers) {
@@ -38,7 +38,7 @@ const App = () => {
                 leastPlayersServer = ip;
                 setSelectedServerName(server.name);
                 setSelectedServer(leastPlayersServer);
-                console.log('Selected server:', leastPlayersServer);
+                //console.log('Selected server:', leastPlayersServer);
               }
             }
           })
@@ -48,9 +48,9 @@ const App = () => {
       });
 
       Promise.all(fetchPromises).then(() => {
-        console.log('All fetches completed');
+        //console.log('All fetches completed');
         setIsLoading(false);
-        setIsButtonDisabled(false); // Enable the button after fetching completes
+        setIsButtonDisabled(false);
       });
     }
   }, [selectedMap]);
@@ -61,7 +61,7 @@ const App = () => {
   };
 
   return (
-    <div className="container"> {/* Add a CSS class for centering */}
+    <div className="container">
       <h1>OhnePixel Server List</h1>
       <p>Fetches the server with the least amount of players.</p>
       <div className="map-buttons">
