@@ -18,42 +18,41 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
+  // useEffect hook to fetch server info when a map is selected
   useEffect(() => {
-    const apiUrl = process.env.REACT_APP_API_URL;
-    if (selectedMap) {
-      let leastPlayers = Infinity;
-      let leastPlayersServer = '';
+    const apiUrl = process.env.REACT_APP_API_URL; // API URL from environment variables
+    if (selectedMap) { // If a map is selected
+      let leastPlayers = Infinity; // Initialize leastPlayers with Infinity
+      let leastPlayersServer = ''; // Initialize leastPlayersServer with empty string
 
+      // Map over the IPs of the selected map and fetch server info for each IP
       const fetchPromises = selectedMap.ips.map(ip => {
-        //console.log('Fetching server info for IP:', ip);
-        return fetch(`${apiUrl}/api/server-info?ip=${ip}`)
-          .then(response => response.json())
+        return fetch(`${apiUrl}/api/server-info?ip=${ip}`) // Fetch server info
+          .then(response => response.json()) // Parse response as JSON
           .then(data => {
-            //console.log('Received server info for IP:', ip, 'Data:', data);
-            //console.log('calling: ', `${apiUrl}/api/server-info?ip=${ip}`)
-            if (data.response && data.response.servers) {
-              const server = data.response.servers[0];
+            if (data.response && data.response.servers) { // If response contains server info
+              const server = data.response.servers[0]; // Get the first server from the response
+              // If the server has less players than max_players and less than leastPlayers
               if (server.players < server.max_players && server.players < leastPlayers) {
-                leastPlayers = server.players;
-                leastPlayersServer = ip;
-                setSelectedServerName(server.name);
-                setSelectedServer(leastPlayersServer);
-                //console.log('Selected server:', leastPlayersServer);
+                leastPlayers = server.players; // Update leastPlayers
+                leastPlayersServer = ip; // Update leastPlayersServer
+                setSelectedServerName(server.name); // Set selected server name
+                setSelectedServer(leastPlayersServer); // Set selected server
               }
             }
           })
-          .catch(error => {
+          .catch(error => { // Catch and log any errors
             console.error('Error fetching server info for IP:', ip, 'Error:', error);
           });
       });
 
+      // Once all fetches are completed, set isLoading and isButtonDisabled to false
       Promise.all(fetchPromises).then(() => {
-        //console.log('All fetches completed');
         setIsLoading(false);
         setIsButtonDisabled(false);
       });
     }
-  }, [selectedMap]);
+  }, [selectedMap]); // Run useEffect hook whenever selectedMap changes
 
   const connectToServer = () => {
     console.log('Connecting to server:', selectedServer);

@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import fetch from 'node-fetch';
 import dotenv from 'dotenv';
-import cache from 'memory-cache'; // Add this line
+import cache from 'memory-cache';
 dotenv.config();
 
 const app = express();
