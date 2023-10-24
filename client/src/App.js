@@ -63,6 +63,7 @@ const App = () => {
     <div className="container">
       <h1>OhnePixel Server List [Beta]</h1>
       <p>Fetches the server with the least amount of players.</p>
+      <a href='https://github.com/jenslys/ohnepixel-servers' style={{textDecoration: 'none', color: 'gray', marginTop:'-18px'}}><small>[Source Code]</small></a>
       <div className="map-buttons">
         {maps.map(map => (
           <button key={map.name} onClick={() => setSelectedMap(map)}>
