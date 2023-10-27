@@ -15,6 +15,6 @@ Application that shows all of Ohnepixel's CS2 Skin Servers and automatically sel
 - cp .env.example .env
 - fil out .env
 
-# Start
+# Start frontend and backend
 
-- npm run start-client
+- npm run start-both
